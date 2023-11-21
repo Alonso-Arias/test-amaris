@@ -32,6 +32,10 @@
 
 * `MYSQL_CONNECTION=root:123456@tcp(localhost:3306)/TEST BASE_URL=https://pokeapi.co/api/v2/pokemon-form go test -v ./db/dao`
 
+## Diagrama
+
+<image src="https://i.ibb.co/LQ7K3mT/Screenshot-2023-11-21-at-01-56-01.png" alt="Descripción de la imagen">
+
 ## Docker
 
 Comandos para generación de contenedor de API. No es necesario para ambiente local.
