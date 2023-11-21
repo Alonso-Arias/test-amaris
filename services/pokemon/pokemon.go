@@ -37,12 +37,6 @@ func (ps PokemonService) SavePokemon(ctx context.Context, in SavePokemonRequest)
 		return SavePokemonResponse{}, errs.BadRequest
 	}
 
-	// Obtener información externa del Pokemon desde la API
-	extPokemon, err := ext.GetExternalPokemon(in.Pokemon.ID)
-	if err != nil {
-		return SavePokemonResponse{}, errs.PokemonsNotFound
-	}
-
 	PokemonDao := dao.NewPokemonDAO()
 
 	// validacion de Pokemon
@@ -57,6 +51,12 @@ func (ps PokemonService) SavePokemon(ctx context.Context, in SavePokemonRequest)
 	// valida si ya esta o no el Pokemon a guardar
 	if p.ID == int32(in.Pokemon.ID) {
 		return SavePokemonResponse{}, errs.PokemonAlreadySaved
+	}
+
+	// Obtener información externa del Pokemon desde la API
+	extPokemon, err := ext.GetExternalPokemon(in.Pokemon.ID)
+	if err != nil {
+		return SavePokemonResponse{}, errs.PokemonsNotFound
 	}
 
 	// decision con respecto al nombre dejarlo dinamico con interface
